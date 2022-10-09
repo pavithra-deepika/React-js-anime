@@ -1,12 +1,19 @@
 import React from 'react'
+import Card from './animeCard'
 
 function Movie({movie}) {
   return (
     <div>
         <h1>{movie.title}</h1>
-        {/* {movie ? console.log(movie) : ""} */}
-        <img src = {"https://cdn.myanimelist.net/images/anime/7/20310.jpg"}></img>
-      
+        {movie ? console.log(movie) : ""}
+        <img src = {movie.images.jpg.image_url}></img>
+       {/* <div className='app'>   
+      <div className='anime-movies'>
+        
+        { animes ?  animes.map( anime => <AnimeCard movie={anime}/> ) : ""}
+        
+      </div>
+    </div> */}
     </div>
   )
 }
