@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid } from '@mui/material';
 
 export default function AnimeCard({movie}) {
-  console.log(movie)
+  
   return (
 
     <Card sx={{ maxWidth: 345 }}>

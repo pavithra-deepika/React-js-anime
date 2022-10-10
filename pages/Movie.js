@@ -5,7 +5,7 @@ function Movie({movie}) {
   return (
     <div>
         <h1>{movie.title}</h1>
-        {movie ? console.log(movie) : ""}
+        {/* {movie ? console.log(movie) : ""} */}
         <img src = {movie.images.jpg.image_url}></img>
        {/* <div className='app'>   
       <div className='anime-movies'>
