@@ -9,7 +9,7 @@ export default function AnimeCard({movie}) {
   
   return (
 
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} draggable>
       <CardActionArea>
         
         <CardContent>

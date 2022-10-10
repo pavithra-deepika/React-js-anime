@@ -1,6 +1,6 @@
 
 // import '../styles/globals.css';
-import { Grid, MenuItem, Select } from '@mui/material';
+import { Grid, MenuItem, Pagination, Select } from '@mui/material';
 import { useEffect, useState } from 'react';
 import AnimeCard from './animeCard';
 import Movie from './Movie';
@@ -8,6 +8,7 @@ import Movie from './Movie';
 
 export default function Home() {
   const [filters,setFilter] = useState([]);
+  const [pages,setPage] = useState();
   const [animes,setAnimes] = useState([]);
   const [genres, setGenre] = useState('');
   useEffect(() => {
@@ -20,6 +21,8 @@ let movies;
     const data=await fetch("https://api.jikan.moe/v4/anime");
      movies=await data.json();
     setAnimes(movies.data);
+    setPage=movies.pagination.last_visible_page;
+console.log(pages)
     filterAnimes();
     }; 
     
@@ -33,23 +36,28 @@ let movies;
         const data=await fetch("https://api.jikan.moe/v4/genres/anime");
        let filter=await data.json();
        setFilter(filter.data)
-       console.log(filters)
          }; 
       
          const handleChange = async(event) => {
           setGenre(event.target.value);
-          const data= fetch("https://api.jikan.moe/v4/anime?genres="+genres);
+          const data=await fetch("https://api.jikan.moe/v4/anime?genres="+genres);
     movies=await data.json();
     setAnimes(movies.data)
         };
-      
+      const changePage= async(event,value)=>{
+        const data=await fetch("https://api.jikan.moe/v4/anime?page="+value);
+    movies=await data.json();
+    setAnimes(movies.data)
+      }
         
     return (
-     <div>                  
       <div>
+     <Grid container>                 
+      <Grid item xs={6}>
         <input id = "searchAnime" type ="text" placeholder ='search' />
         <button onClick={searchAnimes}>search</button>
-       </div>
+        </Grid>    
+        <Grid item xs={6}>
       <Select
       labelId="demo-simple-select-label"                
       id="demo-simple-select"
@@ -58,13 +66,16 @@ let movies;
           onChange={handleChange}
         >
           <MenuItem value="0">Select</MenuItem>
-          {filters ? filters.map(elem => (
-            
+          {filters ? filters.map(elem => (            
           <MenuItem  key={elem.mal_id} value={elem.mal_id}>{elem.name}</MenuItem>   
-         )) : <MenuItem value="0">No Item</MenuItem>}
-          
-          
+         )) : <MenuItem value="0">No Item</MenuItem>}          
         </Select>
+        </Grid>
+        </Grid>
+        <Grid container>
+        
+        <Grid item xs={9}>
+        <Pagination count={20} onChange={changePage}/>
      <Grid
          container
          spacing={2}
@@ -77,6 +88,10 @@ let movies;
                  <AnimeCard movie={elem}/> 
               </Grid>
          )) : "No Result Found"}
+     </Grid>
+    
+     </Grid>
+     <Grid item xs={3}>WatchList</Grid>
      </Grid>
  </div>
   );
