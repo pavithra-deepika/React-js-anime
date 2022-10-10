@@ -18,16 +18,37 @@ export default function Home() {
   
     setAnimes(movies.data);
     }; 
-  //   const useStyles = makeStyles(theme => ({
-  //     root: {
-  //         flexGrow: 1,
-  //         padding: theme.spacing(2)
-  //     }
-  // }))
-  //   const classes = useStyles()
+
+    const searchAnimes = async () => {
+      const data=await fetch("https://api.jikan.moe/v4/anime/q?'beet'");
+      const searchedMovies=await data.json();
+    
+      setAnimes(searchedMovies.data);
+      }; 
+  
+
+
+
+
+
     return (
-   
+      
      <div>
+      <div>
+        <input type="text" placeholder='Search' />
+        <button onClick={searchAnimes()}>submit</button>      
+      </div>
+      <select 
+      // onChange={(e) => {
+      //   setFilterParm(e.target.value)
+      // }}
+      className ="select">
+      <option value = "All"> Filter by genres</option>
+      <option value = "Aabcll">  by genres</option>
+
+   
+      </select>
+      
      <Grid
          container
          spacing={2}

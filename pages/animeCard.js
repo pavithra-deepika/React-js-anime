@@ -18,8 +18,13 @@ export default function AnimeCard({movie}) {
             {movie.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Episodes: {movie.episodes}
+          Episodes: {movie.episodes}, genres: {movie.genres.map(genre => genre.name + " ")}
           </Typography>
+          {/* <Typography variant="body2" color="text.secondary">
+          Genres: {movie.genres}
+          </Typography>
+           */}
+
         </CardContent>
       </CardActionArea>
     </Card>
