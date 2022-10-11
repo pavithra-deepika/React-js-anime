@@ -7,6 +7,7 @@ function Movie({movie}) {
         <h1>{movie.title}</h1>
         {/* {movie ? console.log(movie) : ""} */}
         <img src = {movie.images.jpg.image_url}></img>
+        <h3>{movie.rating}</h3>
        {/* <div className='app'>   
       <div className='anime-movies'>
         
