@@ -86,7 +86,7 @@ export default function Home() {
           alignItems="flex-start"
           >
           {animes ?  animes.map(elem => (
-             <Grid item xs={12} sm={6} md={3} key={animes.indexOf(elem)} draggable >
+             <Grid item xs={12} sm={6} md={3}  draggable >
                  <AnimeCard movie={elem}/> 
              </Grid>
           )) : "No Result Found"}
